@@ -1,0 +1,29 @@
+name: Pruebas de concurrencia
+
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: Descargar proyecto
+        uses: actions/checkout@v4
+
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+
+      - name: Ejecutar pruebas
+        run: mvn test
